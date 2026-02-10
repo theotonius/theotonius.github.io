@@ -77,9 +77,9 @@
             
             <div class="hidden md:flex space-x-12 text-[11px] uppercase tracking-[0.3em] font-semibold">
                 <a href="#home" class="hover:text-amber-500 transition">Home</a>
-                <a href="#services" class="hover:text-amber-500 transition">Services</a>
+                <a href="#package" class="hover:text-amber-500 transition">Package</a>
                 <a href="#portfolio" class="hover:text-amber-500 transition">Portfolio</a>
-                <a href="#pricing" class="hover:text-amber-500 transition">Pricing</a>
+                                <a href="#services" class="hover:text-amber-500 transition">Services</a>
                 <a href="#contact" class="hover:text-amber-500 transition">Contact</a>
             </div>
 
@@ -99,9 +99,10 @@
              class="fixed inset-0 bg-black/95 z-40 flex flex-col items-center justify-center space-y-8 md:hidden h-screen"
              x-cloak>
             <a @click="mobileMenu = false" href="#home" class="text-2xl uppercase tracking-[0.4em] hover:text-amber-500 transition">Home</a>
+            <a @click="mobileMenu = false" href="#package" class="text-2xl uppercase tracking-[0.4em] hover:text-amber-500 transition">package</a>
             <a @click="mobileMenu = false" href="#services" class="text-2xl uppercase tracking-[0.4em] hover:text-amber-500 transition">Services</a>
             <a @click="mobileMenu = false" href="#portfolio" class="text-2xl uppercase tracking-[0.4em] hover:text-amber-500 transition">Portfolio</a>
-            <a @click="mobileMenu = false" href="#pricing" class="text-2xl uppercase tracking-[0.4em] hover:text-amber-500 transition">Pricing</a>
+            
             <a @click="mobileMenu = false" href="#contact" class="text-2xl uppercase tracking-[0.4em] hover:text-amber-500 transition">Contact</a>
         </div>
     </nav>
@@ -134,47 +135,7 @@
         </div>
     </section>
 
-    <section id="services" class="py-32 px-6 bg-[#080808]" style="background: radial-gradient(circle,rgba(238, 174, 202, 1) 10%, rgba(219, 200, 201, 1) 58%, rgba(255, 112, 112, 1) 100%);" >
-        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-16">
-            <div class="group">
-                <div class="text-amber-500 text-4xl mb-6">01</div>
-                <h3 class="text-2xl mb-4 uppercase tracking-tighter">Editorial</h3>
-                <p class="text-zinc-500 leading-relaxed text-sm">Visual storytelling for fashion, magazines, and brands that require a narrative edge.</p>
-            </div>
-            <div class="group">
-                <div class="text-amber-500 text-4xl mb-6">02</div>
-                <h3 class="text-2xl mb-4 uppercase tracking-tighter">Portraiture</h3>
-                <p class="text-zinc-500 leading-relaxed text-sm">Fine art portraits focusing on character, depth, and the natural beauty of the human soul.</p>
-            </div>
-            <div class="group">
-                <div class="text-amber-500 text-4xl mb-6">03</div>
-                <h3 class="text-2xl mb-4 uppercase tracking-tighter">Event Cine</h3>
-                <p class="text-zinc-500 leading-relaxed text-sm">Atmospheric documentation of weddings and high-profile events worldwide.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="py-20 px-4 bg-[#080808]" style="background: radial-gradient(circle,rgba(238, 174, 202, 1) 10%, rgba(219, 200, 201, 1) 58%, rgba(255, 112, 112, 1) 100%);">
-       <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-[1800px] mx-auto">
-            <div class="portfolio-item h-[400px]">
-                <div class="zoom-img" style="background-image: url('./img/p-1.jpg')"></div>
-            </div>
-            <div class="portfolio-item h-[400px] md:col-span-2">
-                <div class="zoom-img" style="background-image: url('./img/p-2.jpg')"></div>
-            </div>
-            <div class="portfolio-item h-[400px]">
-                <div class="zoom-img" style="background-image: url('./img/p-3.jpg')"></div>
-            </div>
-            <div class="portfolio-item h-[400px] md:col-span-2">
-                <div class="zoom-img" style="background-image: url('./img/p-4.jpg')"></div>
-            </div>
-            <div class="portfolio-item h-[400px] md:col-span-2">
-                <div class="zoom-img" style="background-image: url('./img/p-5.jpg')"></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="pricing" class="relative py-32 parallax-window" style="background-image: url('./img/bg-1.jpg');">
+ <section id="package" class="relative py-32 parallax-window" style="background-image: url('./img/bg-1.jpg');">
         <div class="absolute inset-0 bg-black/80"></div>
         <div class="relative z-10 max-w-7xl mx-auto px-6">
             <h2 class="text-4xl md:text-6xl text-center mb-20 italic">Our Package</h2>
@@ -227,6 +188,48 @@
             </div>
         </div>
     </section>
+   
+
+    <section id="portfolio" class="py-20 px-4 bg-[#080808]" style="background: radial-gradient(circle,rgba(238, 174, 202, 1) 10%, rgba(219, 200, 201, 1) 58%, rgba(255, 112, 112, 1) 100%);">
+       <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-[1800px] mx-auto">
+            <div class="portfolio-item h-[400px]">
+                <div class="zoom-img" style="background-image: url('./img/p-1.jpg')"></div>
+            </div>
+            <div class="portfolio-item h-[400px] md:col-span-2">
+                <div class="zoom-img" style="background-image: url('./img/p-2.jpg')"></div>
+            </div>
+            <div class="portfolio-item h-[400px]">
+                <div class="zoom-img" style="background-image: url('./img/p-3.jpg')"></div>
+            </div>
+            <div class="portfolio-item h-[400px] md:col-span-2">
+                <div class="zoom-img" style="background-image: url('./img/p-4.jpg')"></div>
+            </div>
+            <div class="portfolio-item h-[400px] md:col-span-2">
+                <div class="zoom-img" style="background-image: url('./img/p-5.jpg')"></div>
+            </div>
+        </div>
+    </section>
+
+ <section id="services" class="py-32 px-6 bg-[#080808]" style="background: radial-gradient(circle,rgba(238, 174, 202, 1) 10%, rgba(219, 200, 201, 1) 58%, rgba(255, 112, 112, 1) 100%);" >
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-16">
+            <div class="group">
+                <div class="text-amber-500 text-4xl mb-6">01</div>
+                <h3 class="text-2xl mb-4 uppercase tracking-tighter">Editorial</h3>
+                <p class="text-zinc-500 leading-relaxed text-sm">Visual storytelling for fashion, magazines, and brands that require a narrative edge.</p>
+            </div>
+            <div class="group">
+                <div class="text-amber-500 text-4xl mb-6">02</div>
+                <h3 class="text-2xl mb-4 uppercase tracking-tighter">Portraiture</h3>
+                <p class="text-zinc-500 leading-relaxed text-sm">Fine art portraits focusing on character, depth, and the natural beauty of the human soul.</p>
+            </div>
+            <div class="group">
+                <div class="text-amber-500 text-4xl mb-6">03</div>
+                <h3 class="text-2xl mb-4 uppercase tracking-tighter">Event Cine</h3>
+                <p class="text-zinc-500 leading-relaxed text-sm">Atmospheric documentation of weddings and high-profile events worldwide.</p>
+            </div>
+        </div>
+    </section>
+   
 
     <section id="contact" class="py-32 px-6 bg-[#080808]">
         <div class="max-w-4xl mx-auto">
