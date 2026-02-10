@@ -234,13 +234,13 @@
                 <h2 class="text-5xl mb-4 italic">Let's Connect</h2>
                 <p class="text-zinc-500 uppercase tracking-widest text-xs">Available for All Events</p>
             </div>
-            <form class="space-y-8">
+            <form class="space-y-8" action="">
                 <div class="grid md:grid-cols-2 gap-8">
-                    <input type="text" placeholder="Full Name" class="w-full bg-transparent border-b border-white/10 p-4 outline-none focus:border-amber-500 transition">
-                    <input type="email" placeholder="Email Address" class="w-full bg-transparent border-b border-white/10 p-4 outline-none focus:border-amber-500 transition">
+                    <input type="text" id="name" placeholder="Full Name" class="w-full bg-transparent border-b border-white/10 p-4 outline-none focus:border-amber-500 transition">
+                    <input type="email" id="email" placeholder="Email Address" class="w-full bg-transparent border-b border-white/10 p-4 outline-none focus:border-amber-500 transition">
                 </div>
-                <textarea rows="4" placeholder="Your Message..." class="w-full bg-transparent border-b border-white/10 p-4 outline-none focus:border-amber-500 transition"></textarea>
-                <button class="w-full py-5 bg-white text-black text-xs uppercase font-bold tracking-[0.4em] hover:bg-amber-500 transition">Send Message</button>
+                <textarea rows="4" placeholder="Your Message..."  id="message" class="w-full bg-transparent border-b border-white/10 p-4 outline-none focus:border-amber-500 transition"></textarea>
+                <button class="w-full py-5 bg-white text-black text-xs uppercase font-bold tracking-[0.4em] hover:bg-amber-500 transition" type="submit"  onclick="whatsapp()" value="Send Enquiry">Send Message</button>
             </form>
         </div>
     </section>
@@ -266,5 +266,25 @@
             }
         });
     </script>
+
+    <script>
+            function whatsapp(){
+
+                var name = document.getElementById("name").value;
+                var email = document.getElementById("email").value;
+                var message = document.getElementById("message").value;
+
+                var whatsappurl="https://wa.me/+8801763011667?text="
+                +"Name Of Customer: " + name+"%0a"
+                +"Email: " + email+"%0a"
+                +"Message: " + message;
+
+                window.open(whatsappurl,"_blank").focus();
+
+            }
+
+
+    </script>
+
 </body>
 </html>
