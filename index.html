@@ -80,7 +80,7 @@
                 <a href="#package" class="hover:text-amber-500 transition">Package</a>
                 <a href="#portfolio" class="hover:text-amber-500 transition">Portfolio</a>
                                 <a href="#services" class="hover:text-amber-500 transition">Services</a>
-                <a href="#contact" class="hover:text-amber-500 transition">Contact</a>
+                <a href="#booking" class="hover:text-amber-500 transition">Booking</a>
             </div>
 
             <button @click="mobileMenu = !mobileMenu" class="md:hidden z-50 text-white focus:outline-none">
@@ -103,7 +103,7 @@
             <a @click="mobileMenu = false" href="#services" class="text-2xl uppercase tracking-[0.4em] hover:text-amber-500 transition">Services</a>
             <a @click="mobileMenu = false" href="#portfolio" class="text-2xl uppercase tracking-[0.4em] hover:text-amber-500 transition">Portfolio</a>
             
-            <a @click="mobileMenu = false" href="#contact" class="text-2xl uppercase tracking-[0.4em] hover:text-amber-500 transition">Contact</a>
+            <a @click="mobileMenu = false" href="#booking" class="text-2xl uppercase tracking-[0.4em] hover:text-amber-500 transition">Booking</a>
         </div>
     </nav>
 
@@ -306,6 +306,128 @@
     </section>
    
 
+
+<section id="booking" class="py-32 px-6 bg-[#080808]">
+    <div class="max-w-5xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div class="max-w-xl">
+                <h2 class="text-5xl md:text-7xl italic mb-6">Booking Form</h2>
+                <p class="text-zinc-500 uppercase tracking-widest text-xs leading-loose">
+                    Secure your date. Please provide the details of your event below, and our studio will reach out within 24 hours.
+                </p>
+            </div>
+            <div class="hidden md:block h-px flex-grow bg-white/10 mx-10 mb-4"></div>
+        </div>
+
+        <form class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+            <div class="space-y-10">
+                <div class="group relative">
+                    <label class="text-[10px] uppercase tracking-[0.3em] text-amber-500 mb-2 block">Primary Contact</label>
+                    <input type="text" placeholder="Full Name" 
+                        class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-amber-500 transition-colors placeholder:text-zinc-700">
+                </div>
+
+                <div class="group relative">
+                    <label class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-2 block">Email Address</label>
+                    <input type="email" placeholder="hello@example.com" 
+                        class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-amber-500 transition-colors placeholder:text-zinc-700">
+                </div>
+
+                <div class="group relative">
+                    <label class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-2 block">Phone Number</label>
+                    <input type="tel" placeholder="+880 17..." 
+                        class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-amber-500 transition-colors placeholder:text-zinc-700">
+                </div>
+
+
+              <div class="group relative">
+                    <label class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-2 block">Alt Phone Number</label>
+                    <input type="tel" placeholder="+880 17..." 
+                        class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-amber-500 transition-colors placeholder:text-zinc-700">
+                </div>
+
+             <div class="group relative">
+                    <label class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-2 block">Event Location</label>
+                    <input type="text" placeholder="e.g. Dinajpur Rajbari" 
+                        class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-amber-500 transition-colors placeholder:text-zinc-700">
+                </div>
+
+
+             <div class="group relative">
+                    <label class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-2 block">Bride Name</label>
+                    <input type="text" placeholder="Bride Name" 
+                        class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-amber-500 transition-colors placeholder:text-zinc-700">
+                </div>
+
+             <div class="group relative">
+                    <label class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-2 block">Groom Name</label>
+                    <input type="text" placeholder="Groom Name" 
+                        class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-amber-500 transition-colors placeholder:text-zinc-700">
+                </div>
+            </div>
+
+            <div class="space-y-10">
+                <div class="group relative">
+                    <label class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-2 block">Event Date</label>
+                    <input type="date" 
+                        class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-amber-500 transition-colors text-zinc-400">
+                </div>
+
+
+                  <div class="group relative">
+                    <label class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-2 block">Total Final Amount</label>
+                    <input type="text" placeholder="10,0000" 
+                        class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-amber-500 transition-colors placeholder:text-zinc-700">
+                </div>
+
+
+                  <div class="group relative">
+                    <label class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-2 block">Advance Amount</label>
+                    <input type="text" placeholder="7,000" 
+                        class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-amber-500 transition-colors placeholder:text-zinc-700">
+                </div>
+
+                  <div class="group relative">
+                    <label class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-2 block">Due Amount</label>
+                    <input type="text" placeholder="3,000" 
+                        class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-amber-500 transition-colors placeholder:text-zinc-700">
+                </div>
+
+                <div class="group relative">
+                    <label class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-2 block">Payment System</label>
+                    <select class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-amber-500 transition-colors text-zinc-400 appearance-none">
+                        <option class="bg-black">Select a Payment</option>
+                        <option class="bg-black">Cash</option>
+                        <option class="bg-black">Bkash</option>
+                        <option class="bg-black">Nagad</option>
+                        <option class="bg-black">Rocket</option>
+                        <option class="bg-black">Bank Transfer</option>
+                    </select>
+                </div>
+
+                <div class="group relative">
+                    <label class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-2 block">Payment Date</label>
+                    <input type="date" 
+                        class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-amber-500 transition-colors text-zinc-400">
+                </div>
+            </div>
+
+            <div class="md:col-span-2 mt-4">
+                <label class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-2 block">Additional Story / Notes</label>
+                <textarea rows="3" placeholder="Tell us about your vision..." 
+                    class="w-full bg-transparent border-b border-white/10 py-3 outline-none focus:border-amber-500 transition-colors placeholder:text-zinc-700 resize-none"></textarea>
+            </div>
+
+            <div class="md:col-span-2 flex justify-center pt-10">
+                <button type="submit" class="group relative px-12 py-5 bg-white text-black text-[10px] uppercase font-bold tracking-[0.5em] overflow-hidden transition-all duration-300 hover:bg-amber-500 hover:text-white">
+                    Submit Booking
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+
     <section id="contact" class="py-32 px-6 bg-[#080808]">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-16">
@@ -366,4 +488,3 @@
 
 </body>
 </html>
-
