@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Dinajpur Wedding Photography | Dhaka Studio">
+<meta name="keywords" content="wedding photography,candid wedding photography dinajpur,wedding videography dinajpur,dinajpur wedding photographer,wedding photographers in dinajpur,dinajpur photography,wedding photography dinajpur,bangladeshi wedding,bridal photos dinajpur">
+<meta name="author" content="SH Bablu">
+<title>Dinajpur Wedding Photography| Dhaka Studio </title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+  body { font-family: 'Montserrat', sans-serif; background: #080808; color: white; }
+  h1,h2,h3 { font-family: 'Playfair Display', serif; }
+  .nav-glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom:1px solid rgba(255,255,255,0.1);}
+  .parallax-window { background-attachment: fixed; background-position:center; background-repeat:no-repeat; background-size:cover;}
+  #particles-js { position:absolute; width:100%; height:100%; z-index:5; pointer-events:none;}
+  .hero-slide { position:absolute; inset:0; transition:opacity 1.5s ease-in-out, transform 2s ease-out;}
+  .portfolio-item { overflow:hidden; position:relative;}
+  .zoom-img { transition:transform 0.8s cubic-bezier(0.25,1,0.5,1); background-size:cover; background-position:center; width:100%; height:100%;}
+  .portfolio-item:hover .zoom-img { transform: scale(1.15);}
+  @media(max-width:1024px) { .parallax-window { background-attachment:scroll;}}
+</style>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // --- Booking Form ---
+  window.addEventListener('DOMContentLoaded', () => {
+    const bookingForm = document.querySelector("#booking form");
+    const contactForm = document.querySelector("#contact form");
+
+    bookingForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      try {
+        await addDoc(collection(db, "bookings"), {
+          name: document.getElementById("name").value,
+          email: document.getElementById("email").value,
+          pnumber: document.getElementById("pnumber").value,
+          apnumber: document.getElementById("apnumber").value,
+          location: document.getElementById("location").value,
+          bname: document.getElementById("bname").value,
+          gname: document.getElementById("gname").value,
+          edate: document.getElementById("edate").value,
+          tfinalam: document.getElementById("tfinalam").value,
+          adamount: document.getElementById("adamount").value,
+          damount: document.getElementById("damount").value,
+          psystem: document.getElementById("psystem").value,
+          pdate: document.getElementById("pdate").value,
+          astory: document.getElementById("astory").value,
+          createdAt: new Date()
+        });
+
+        // WhatsApp URL
+        let whatsappurl="https://wa.me/+8801763011667?text="
+        +"Name Of Customer: " + document.getElementById("name").value+"%0a"
+        +"Email: " + document.getElementById("email").value+"%0a"
+        +"Phone No: " + document.getElementById("pnumber").value+"%0a"
+        +"Additional number: " + document.getElementById("apnumber").value+"%0a"
+        +"Event location: " + document.getElementById("location").value+"%0a"
+        +"Bride Name: " + document.getElementById("bname").value+"%0a"
+        +"Groom Name: " + document.getElementById("gname").value+"%0a"
+        +"Event date: " + document.getElementById("edate").value+"%0a"
+        +"Total Final Amount: " + document.getElementById("tfinalam").value+"%0a"
+        +"Advance Amount: " + document.getElementById("adamount").value+"%0a"
+        +"Due Amount: " + document.getElementById("damount").value+"%0a"
+        +"Payment System: " + document.getElementById("psystem").value+"%0a"
+        +"Payment date: " + document.getElementById("pdate").value+"%0a"
+        +"Additional Notes: " + document.getElementById("astory").value;
+
+        window.open(whatsappurl,"_blank").focus();
+        alert("Booking submitted successfully!");
+        bookingForm.reset();
+      } catch(err) {
+        console.error(err);
+        alert("Error submitting booking.");
+      }
+    });
+
+    // --- Contact Form ---
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      try {
+        await addDoc(collection(db, "contacts"), {
+          name: document.getElementById("name").value,
+          email: document.getElementById("email").value,
+          message: document.getElementById("message").value,
+          createdAt: new Date()
+        });
+
+        let whatsappurl="https://wa.me/+8801763011667?text="
+        +"Name Of Customer: " + document.getElementById("name").value+"%0a"
+        +"Email: " + document.getElementById("email").value+"%0a"
+        +"Message: " + document.getElementById("message").value;
+
+        window.open(whatsappurl,"_blank").focus();
+        alert("Message sent successfully!");
+        contactForm.reset();
+      } catch(err) {
+        console.error(err);
+        alert("Error sending message.");
+      }
+    });
+  });
+</script>
+</head>
+<body x-data="{ mobileMenu: false }" class="overflow-x-hidden">
+<!-- Navbar + Hero + Packages + Portfolio + Services + Booking + Contact + Footer এখানে থাকবে -->
+<!-- তুমি আগের HTML কোড 그대로 রাখবে, শুধু Booking এবং Contact form এর action="" খালি রাখবে -->
+</body>
+</html>
