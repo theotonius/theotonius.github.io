@@ -5,8 +5,8 @@ const COMMANDS: Record<string, string> = {
   help: "Available commands: about, skills, contact, clear, whoami",
   about: "I'm a full-stack developer with 5+ years of experience building scalable web apps.",
   skills: "React, TypeScript, Node.js, Go, AWS, Docker, Kubernetes.",
-  contact: "Email: hello@darktheo.io | GitHub: @darktheo",
-  whoami: "guest@darktheo.io",
+  contact: "Email: theotonius2012@gmail.com | GitHub: @darktheo",
+  whoami: "theotonius2012@gmail.com",
 };
 
 export default function Terminal() {
