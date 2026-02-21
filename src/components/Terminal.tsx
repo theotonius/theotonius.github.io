@@ -5,12 +5,12 @@ const COMMANDS: Record<string, string> = {
   help: "Available commands: about, skills, contact, clear, whoami",
   about: "I'm a full-stack developer with 5+ years of experience building scalable web apps.",
   skills: "React, TypeScript, Node.js, Go, AWS, Docker, Kubernetes.",
-  contact: "Email: hello@devfolio.io | GitHub: @devfolio",
-  whoami: "guest@devfolio.io",
+  contact: "Email: hello@darktheo.io | GitHub: @darktheo",
+  whoami: "guest@darktheo.io",
 };
 
 export default function Terminal() {
-  const [history, setHistory] = useState<string[]>(["Welcome to DevFolio OS v1.0.0", "Type 'help' to see available commands."]);
+  const [history, setHistory] = useState<string[]>(["Welcome to Darktheo OS v1.0.0", "Type 'help' to see available commands."]);
   const [input, setInput] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
 

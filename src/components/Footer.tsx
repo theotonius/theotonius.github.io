@@ -12,10 +12,10 @@ export default function Footer() {
               Feel free to reach out if you have a project in mind.
             </p>
             <a 
-              href="mailto:hello@devfolio.io" 
+              href="mailto:hello@darktheo.io" 
               className="inline-flex items-center gap-2 text-accent font-bold group"
             >
-              hello@devfolio.io
+              hello@darktheo.io
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
@@ -42,7 +42,7 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 gap-4">
           <p className="text-xs text-white/30 font-mono">
-            © {new Date().getFullYear()} DEV_FOLIO. ALL_RIGHTS_RESERVED.
+            © {new Date().getFullYear()} DARKTHEO. ALL_RIGHTS_RESERVED.
           </p>
           <div className="flex items-center gap-6">
             <span className="text-[10px] font-mono text-white/20">MADE_WITH_REACT_AND_TAILWIND</span>

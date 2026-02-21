@@ -22,7 +22,7 @@ export default function Contact() {
               </div>
               <div>
                 <p className="text-xs font-mono text-white/30 uppercase">Email Me</p>
-                <p className="font-bold">hello@devfolio.io</p>
+                <p className="font-bold">hello@darktheo.io</p>
               </div>
             </div>
             <div className="flex items-center gap-4 p-4 rounded-2xl glass w-fit">
@@ -31,7 +31,7 @@ export default function Contact() {
               </div>
               <div>
                 <p className="text-xs font-mono text-white/30 uppercase">LinkedIn</p>
-                <p className="font-bold">linkedin.com/in/devfolio</p>
+                <p className="font-bold">linkedin.com/in/darktheo</p>
               </div>
             </div>
           </div>

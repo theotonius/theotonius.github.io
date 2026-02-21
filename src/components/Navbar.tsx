@@ -19,7 +19,7 @@ export default function Navbar() {
         <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
           <Terminal className="text-black w-5 h-5" />
         </div>
-        <span className="font-mono font-bold text-lg tracking-tighter">DEV_FOLIO</span>
+        <span className="font-mono font-bold text-lg tracking-tighter">DARKTHEO</span>
       </div>
 
       <div className="hidden md:flex items-center gap-8">
