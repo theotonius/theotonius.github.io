@@ -32,6 +32,7 @@ export default function Footer() {
           <div>
             <h3 className="font-mono text-xs text-white/30 uppercase tracking-widest mb-6">Navigation</h3>
             <ul className="space-y-4">
+              <li><a href="#about" className="text-white/60 hover:text-white transition-colors">About</a></li>
               <li><a href="#projects" className="text-white/60 hover:text-white transition-colors">Projects</a></li>
               <li><a href="#skills" className="text-white/60 hover:text-white transition-colors">Skills</a></li>
               <li><a href="#experience" className="text-white/60 hover:text-white transition-colors">Experience</a></li>

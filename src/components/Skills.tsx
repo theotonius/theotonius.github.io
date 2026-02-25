@@ -34,9 +34,13 @@ export default function Skills() {
               </h3>
               <div className="flex flex-wrap gap-3">
                 {["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "Redux", "Zustand"].map((s) => (
-                  <span key={s} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm hover:border-accent/50 transition-colors cursor-default">
+                  <motion.span 
+                    key={s} 
+                    whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(var(--accent-rgb), 0.5)" }}
+                    className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm transition-colors cursor-default"
+                  >
                     {s}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </div>
@@ -57,10 +61,17 @@ export default function Skills() {
             </h3>
             <ul className="space-y-4">
               {["Node.js", "Go", "Python", "PostgreSQL", "Redis", "GraphQL"].map((s) => (
-                <li key={s} className="flex items-center justify-between">
-                  <span className="text-white/70">{s}</span>
-                  <div className="w-1.5 h-1.5 rounded-full bg-accent/20" />
-                </li>
+                <motion.li 
+                  key={s} 
+                  whileHover={{ x: 5 }}
+                  className="flex items-center justify-between group/item"
+                >
+                  <span className="text-white/70 group-hover/item:text-accent transition-colors">{s}</span>
+                  <motion.div 
+                    whileHover={{ scale: 1.5 }}
+                    className="w-1.5 h-1.5 rounded-full bg-accent/20 group-hover/item:bg-accent transition-colors" 
+                  />
+                </motion.li>
               ))}
             </ul>
           </motion.div>
@@ -79,9 +90,13 @@ export default function Skills() {
             </h3>
             <div className="grid grid-cols-2 gap-4">
               {["AWS", "Docker", "K8s", "CI/CD", "Terraform", "Nginx"].map((s) => (
-                <div key={s} className="text-xs font-mono text-white/50 p-2 border border-white/5 rounded text-center">
+                <motion.div 
+                  key={s} 
+                  whileHover={{ scale: 1.05, borderColor: "rgba(var(--accent-rgb), 0.3)", backgroundColor: "rgba(255, 255, 255, 0.05)" }}
+                  className="text-xs font-mono text-white/50 p-2 border border-white/5 rounded text-center transition-colors cursor-default"
+                >
                   {s}
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -103,9 +118,13 @@ export default function Skills() {
             </div>
             <div className="flex -space-x-4">
               {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="w-12 h-12 rounded-full border-2 border-bg bg-surface flex items-center justify-center text-[10px] font-mono">
+                <motion.div 
+                  key={i} 
+                  whileHover={{ y: -5, scale: 1.1, zIndex: 10 }}
+                  className="w-12 h-12 rounded-full border-2 border-bg bg-surface flex items-center justify-center text-[10px] font-mono cursor-default relative"
+                >
                   0{i}
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
