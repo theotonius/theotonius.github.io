@@ -7,6 +7,7 @@ import Experience from "./components/Experience";
 import Terminal from "./components/Terminal";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import WhatsAppButton from "./components/WhatsAppButton";
 import { motion, useScroll, useSpring } from "motion/react";
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
       />
 
       <Navbar />
+      <WhatsAppButton />
       
       <main>
         <Hero />
