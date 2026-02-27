@@ -1,106 +1,135 @@
 import { motion } from "motion/react";
-import { Mail, MessageSquare, Send } from "lucide-react";
+import { Mail, MessageSquare, Send, Globe, Clock } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Contact() {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setTime(now.toLocaleTimeString("en-US", { 
+        hour12: false, 
+        hour: "2-digit", 
+        minute: "2-digit",
+        timeZoneName: "short"
+      }));
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id="contact" className="py-32 px-6 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-        <div>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8 leading-tight">
-            Let's talk about <br />
-            <span className="font-serif italic text-accent">your project</span>.
-          </h2>
-          <p className="text-white/50 text-lg mb-12 max-w-md">
-            Have an idea you want to bring to life? Or just want to say hi? 
-            Fill out the form below or send an email directly.
-          </p>
+        <div className="flex flex-col justify-between">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-mono mb-8">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+              </span>
+              AVAILABLE FOR NEW PROJECTS
+            </div>
+            
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-[0.9]">
+              Let's build <br />
+              <span className="text-accent italic font-serif">something great</span>.
+            </h2>
+            
+            <p className="text-white/60 text-lg mb-12 max-w-md leading-relaxed">
+              I'm currently open to freelance opportunities and full-time positions. 
+              Let's discuss how we can work together.
+            </p>
 
-          <div className="space-y-6">
-            <div className="flex items-center gap-4 p-4 rounded-2xl glass w-fit">
-              <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-accent">
-                <Mail size={24} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+              <div className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors group">
+                <div className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 mb-4 group-hover:text-accent transition-colors">
+                  <Mail size={20} />
+                </div>
+                <p className="text-[10px] font-mono text-white/30 uppercase tracking-widest mb-1">Email</p>
+                <p className="font-medium text-white/90">theotonius2012@gmail.com</p>
               </div>
-              <div>
-                <p className="text-xs font-mono text-white/30 uppercase">Email Me</p>
-                <p className="font-bold">theotonius2012@gmail.com</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 p-4 rounded-2xl glass w-fit">
-              <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-accent">
-                <MessageSquare size={24} />
-              </div>
-              <div>
-                <p className="text-xs font-mono text-white/30 uppercase">LinkedIn</p>
-                <p className="font-bold">linkedin.com/in/darktheo</p>
+
+              <div className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors group">
+                <div className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 mb-4 group-hover:text-accent transition-colors">
+                  <MessageSquare size={20} />
+                </div>
+                <p className="text-[10px] font-mono text-white/30 uppercase tracking-widest mb-1">LinkedIn</p>
+                <p className="font-medium text-white/90">linkedin.com/in/darktheo</p>
               </div>
             </div>
-            <a 
-              href="https://wa.me/8801614802711" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-4 p-4 rounded-2xl glass w-fit hover:bg-white/5 transition-colors group"
-            >
-              <div className="w-12 h-12 bg-[#25D366]/10 rounded-xl flex items-center justify-center text-[#25D366] group-hover:scale-110 transition-transform">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-              </div>
-              <div>
-                <p className="text-xs font-mono text-white/30 uppercase">WhatsApp</p>
-                <p className="font-bold">+880 1614 802711</p>
-              </div>
-            </a>
+          </div>
+
+          <div className="flex items-center gap-8 pt-8 border-t border-white/5">
+            <div className="flex items-center gap-2 text-white/40">
+              <Globe size={14} />
+              <span className="text-xs font-mono uppercase tracking-wider">Dhaka, BD</span>
+            </div>
+            <div className="flex items-center gap-2 text-white/40">
+              <Clock size={14} />
+              <span className="text-xs font-mono uppercase tracking-wider">{time}</span>
+            </div>
           </div>
         </div>
 
         <motion.div 
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="p-8 rounded-3xl glass border-accent/10"
+          className="relative"
         >
-          <form className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="text-xs font-mono text-white/40 uppercase ml-1">Your Name</label>
+          <div className="absolute -inset-4 bg-accent/5 blur-3xl rounded-full opacity-50 pointer-events-none" />
+          
+          <div className="relative p-8 md:p-10 rounded-[2rem] border border-white/10 bg-surface/50 backdrop-blur-xl">
+            <form className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                  <label className="text-[10px] font-mono text-white/40 uppercase tracking-[0.2em] ml-1">Full Name</label>
+                  <input 
+                    type="text" 
+                    placeholder="Jane Cooper"
+                    className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-4 outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all placeholder:text-white/20"
+                  />
+                </div>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-mono text-white/40 uppercase tracking-[0.2em] ml-1">Email Address</label>
+                  <input 
+                    type="email" 
+                    placeholder="jane@example.com"
+                    className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-4 outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all placeholder:text-white/20"
+                  />
+                </div>
+              </div>
+              
+              <div className="space-y-3">
+                <label className="text-[10px] font-mono text-white/40 uppercase tracking-[0.2em] ml-1">Subject</label>
                 <input 
                   type="text" 
-                  placeholder="John Doe"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-accent/50 transition-colors"
+                  placeholder="How can I help you?"
+                  className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-4 outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all placeholder:text-white/20"
                 />
               </div>
-              <div className="space-y-2">
-                <label className="text-xs font-mono text-white/40 uppercase ml-1">Email Address</label>
-                <input 
-                  type="email" 
-                  placeholder="john@example.com"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-accent/50 transition-colors"
+
+              <div className="space-y-3">
+                <label className="text-[10px] font-mono text-white/40 uppercase tracking-[0.2em] ml-1">Message</label>
+                <textarea 
+                  rows={5}
+                  placeholder="Tell me about your project, goals, and timeline..."
+                  className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-4 outline-none focus:border-accent/50 focus:bg-white/[0.05] transition-all placeholder:text-white/20 resize-none"
                 />
               </div>
-            </div>
-            <div className="space-y-2">
-              <label className="text-xs font-mono text-white/40 uppercase ml-1">Subject</label>
-              <input 
-                type="text" 
-                placeholder="Project Inquiry"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-accent/50 transition-colors"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-xs font-mono text-white/40 uppercase ml-1">Your Message</label>
-              <textarea 
-                rows={4}
-                placeholder="Tell me about your project..."
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-accent/50 transition-colors resize-none"
-              />
-            </div>
-            <button className="w-full bg-accent text-black font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform">
-              Send Message
-              <Send size={18} />
-            </button>
-          </form>
+
+              <button className="w-full bg-accent text-black font-bold py-5 rounded-xl flex items-center justify-center gap-3 hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-accent/20">
+                Send Message
+                <Send size={18} />
+              </button>
+            </form>
+          </div>
         </motion.div>
       </div>
     </section>
   );
 }
+

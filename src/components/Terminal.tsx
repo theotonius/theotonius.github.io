@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { motion } from "motion/react";
 
 const COMMANDS: Record<string, string> = {
   help: "Available commands: about, skills, contact, clear, whoami",
@@ -36,42 +35,40 @@ export default function Terminal() {
   };
 
   return (
-    <section className="py-32 px-6 max-w-4xl mx-auto">
-      <div className="rounded-xl overflow-hidden border border-white/10 shadow-2xl">
-        {/* Terminal Header */}
-        <div className="bg-white/5 px-4 py-2 flex items-center justify-between border-bottom border-white/10">
-          <div className="flex gap-2">
-            <div className="w-3 h-3 rounded-full bg-red-500/50" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-            <div className="w-3 h-3 rounded-full bg-green-500/50" />
-          </div>
-          <span className="text-[10px] font-mono text-white/30">bash — 80x24</span>
+    <div className="rounded-[2rem] overflow-hidden glass border border-white/10 shadow-2xl">
+      {/* Terminal Header */}
+      <div className="bg-white/5 px-6 py-4 flex items-center justify-between border-b border-white/5">
+        <div className="flex gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+          <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+          <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
         </div>
-
-        {/* Terminal Body */}
-        <div 
-          ref={scrollRef}
-          className="bg-black/90 p-6 h-[400px] overflow-y-auto font-mono text-sm leading-relaxed"
-        >
-          {history.map((line, i) => (
-            <div key={i} className={line.startsWith(">") ? "text-white/40" : "text-accent"}>
-              {line}
-            </div>
-          ))}
-          
-          <form onSubmit={handleCommand} className="flex gap-2 mt-2">
-            <span className="text-accent">➜</span>
-            <span className="text-blue-400">~</span>
-            <input 
-              type="text" 
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              className="flex-1 bg-transparent outline-none border-none text-white caret-accent"
-              autoFocus
-            />
-          </form>
-        </div>
+        <span className="text-[10px] font-mono text-white/20 uppercase tracking-widest">darktheo — zsh</span>
       </div>
-    </section>
+
+      {/* Terminal Body */}
+      <div 
+        ref={scrollRef}
+        className="p-8 h-[400px] overflow-y-auto font-mono text-xs leading-relaxed"
+      >
+        {history.map((line, i) => (
+          <div key={i} className={`mb-2 ${line.startsWith(">") ? "text-white/20" : "text-white/60"}`}>
+            {line}
+          </div>
+        ))}
+        
+        <form onSubmit={handleCommand} className="flex gap-3 mt-4">
+          <span className="text-accent">➜</span>
+          <span className="text-white/20">~</span>
+          <input 
+            type="text" 
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="flex-1 bg-transparent outline-none border-none text-white caret-accent"
+            autoFocus
+          />
+        </form>
+      </div>
+    </div>
   );
 }

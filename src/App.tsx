@@ -19,10 +19,10 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen selection:bg-accent selection:text-black">
+    <div className="min-h-screen bg-bg selection:bg-accent selection:text-black">
       {/* Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-accent z-[100] origin-left"
+        className="fixed top-0 left-0 right-0 h-0.5 bg-accent z-[100] origin-left"
         style={{ scaleX }}
       />
 
@@ -32,23 +32,26 @@ export default function App() {
       <main>
         <Hero />
         
-        <About />
-
         <div className="relative">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-          <Projects />
+          <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-bg to-transparent z-10" />
+          <About />
         </div>
+
+        <Projects />
 
         <Skills />
         
         <Experience />
 
-        <div className="relative py-20">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold tracking-tighter mb-2">Interactive Console</h2>
-            <p className="text-white/40 text-sm">Query the system for more information.</p>
+        <div className="py-32 px-6">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-16">
+              <span className="text-[10px] font-mono text-accent uppercase tracking-[0.4em] mb-4 block font-bold">System Interface</span>
+              <h2 className="text-4xl font-bold tracking-tight mb-4">Interactive <span className="font-serif italic font-light text-white/60">Console</span></h2>
+              <p className="text-white/40 text-sm font-light">Direct access to the core system parameters and developer logs.</p>
+            </div>
+            <Terminal />
           </div>
-          <Terminal />
         </div>
 
         <Contact />
@@ -57,7 +60,7 @@ export default function App() {
       <Footer />
 
       {/* Background Noise/Texture */}
-      <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[9999] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      <div className="fixed inset-0 pointer-events-none opacity-[0.02] z-[9999] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
     </div>
   );
 }

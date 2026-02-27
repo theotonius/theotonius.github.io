@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "motion/react";
-import { ExternalLink, Github, X, Info } from "lucide-react";
+import { ExternalLink, Github, X, Info, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 const projects = [
@@ -59,150 +59,129 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
 
   return (
-    <section id="projects" className="py-32 px-6 max-w-7xl mx-auto">
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-        <div>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4">Selected Works</h2>
-          <p className="text-white/50 max-w-md">
-            A collection of projects that push the boundaries of web technology and user experience.
-          </p>
+    <section id="projects" className="py-32 px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+          <div className="max-w-2xl">
+            <span className="text-[10px] font-mono text-accent uppercase tracking-[0.4em] mb-8 block font-bold">Selected Works</span>
+            <h2 className="text-5xl md:text-8xl font-bold tracking-tight mb-6 leading-[0.85]">
+              Digital <br />
+              <span className="font-serif italic font-light text-white/80">Artifacts</span>.
+            </h2>
+          </div>
+          <div className="flex flex-col items-end gap-2 text-right">
+            <span className="text-[10px] font-mono text-white/20 uppercase tracking-[0.3em]">Directory</span>
+            <button className="text-accent font-mono text-xs hover:text-white transition-colors flex items-center gap-2 group">
+              VIEW_ARCHIVE()
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
         </div>
-        <button className="text-accent font-mono text-sm hover:underline">VIEW_ALL_PROJECTS()</button>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="group relative flex flex-col gap-4"
-          >
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 bg-surface relative">
-              <img 
-                src={project.image} 
-                alt={project.title}
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                <button 
-                  onClick={() => setSelectedProject(project)}
-                  className="bg-accent text-black p-3 rounded-full hover:scale-110 transition-transform"
-                  title="View Details"
-                >
-                  <Info size={20} />
-                </button>
-                <a 
-                  href={project.github} 
-                  className="bg-white/10 text-white p-3 rounded-full hover:bg-white/20 transition-colors"
-                  title="GitHub"
-                >
-                  <Github size={20} />
-                </a>
-              </div>
-            </div>
-            
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center justify-between">
-                <h3 className="text-xl font-bold">{project.title}</h3>
-                <button 
-                  onClick={() => setSelectedProject(project)}
-                  className="text-[10px] font-mono text-accent hover:underline uppercase tracking-widest"
-                >
-                  View Details
-                </button>
-              </div>
-              <p className="text-sm text-white/50 line-clamp-2">{project.desc}</p>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {project.tech.map((t) => (
-                  <span key={t} className="text-[10px] font-mono px-2 py-1 rounded bg-white/5 border border-white/10 text-white/40">
-                    {t}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="group cursor-pointer flex flex-col"
+              onClick={() => setSelectedProject(project)}
+            >
+              <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden glass p-4 mb-8 relative">
+                <div className="w-full h-full rounded-[1.8rem] overflow-hidden relative">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out grayscale group-hover:grayscale-0"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center">
+                      <ExternalLink className="text-white w-6 h-6" />
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Floating Tags */}
+                <div className="absolute top-8 left-8 flex flex-wrap gap-2">
+                  <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-[10px] font-mono text-white/60 uppercase tracking-widest">
+                    {project.tech[0]}
                   </span>
-                ))}
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+
+              <div className="flex justify-between items-start px-4">
+                <div>
+                  <h3 className="text-2xl font-bold mb-2 group-hover:text-accent transition-colors">{project.title}</h3>
+                  <p className="text-white/40 text-sm font-light line-clamp-1">{project.desc}</p>
+                </div>
+                <span className="text-[10px] font-mono text-white/10 group-hover:text-accent/40 transition-colors">0{index + 1}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
-      {/* Project Details Modal */}
+      {/* Project Detail Modal */}
       <AnimatePresence>
         {selectedProject && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-bg/90 backdrop-blur-2xl"
+            onClick={() => setSelectedProject(null)}
+          >
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedProject(null)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl glass border border-white/10 p-8 md:p-12"
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="max-w-4xl w-full glass rounded-[3rem] overflow-hidden relative"
+              onClick={e => e.stopPropagation()}
             >
               <button 
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors"
+                className="absolute top-8 right-8 w-12 h-12 rounded-full glass flex items-center justify-center text-white/40 hover:text-white transition-colors z-10"
               >
-                <X size={24} />
+                <X size={20} />
               </button>
 
-              <div className="flex flex-col gap-8">
-                <div className="aspect-video rounded-2xl overflow-hidden border border-white/10">
-                  <img 
-                    src={selectedProject.image} 
-                    alt={selectedProject.title}
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
+              <div className="grid grid-cols-1 md:grid-cols-2">
+                <div className="aspect-square md:aspect-auto">
+                  <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                 </div>
-
-                <div className="space-y-6">
+                <div className="p-12 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-3xl md:text-4xl font-bold tracking-tighter mb-4">{selectedProject.title}</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedProject.tech.map((t) => (
-                        <span key={t} className="text-xs font-mono px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent">
-                          {t}
-                        </span>
-                      ))}
+                    <span className="text-[10px] font-mono text-accent uppercase tracking-[0.4em] mb-4 block">Project Detail</span>
+                    <h3 className="text-4xl font-bold mb-6">{selectedProject.title}</h3>
+                    <p className="text-white/60 text-lg font-light leading-relaxed mb-8">{selectedProject.desc}</p>
+                    
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="text-[10px] font-mono text-white/20 uppercase tracking-widest mb-3">Challenge</h4>
+                        <p className="text-sm text-white/40 leading-relaxed">{selectedProject.challenges}</p>
+                      </div>
+                      <div>
+                        <h4 className="text-[10px] font-mono text-white/20 uppercase tracking-widest mb-3">Solution</h4>
+                        <p className="text-sm text-white/40 leading-relaxed">{selectedProject.solutions}</p>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-white/5">
-                    <div className="space-y-4">
-                      <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest">The Challenge</h4>
-                      <p className="text-white/60 leading-relaxed">{selectedProject.challenges}</p>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="text-xs font-mono text-white/30 uppercase tracking-widest">The Solution</h4>
-                      <p className="text-white/60 leading-relaxed">{selectedProject.solutions}</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4 pt-8">
-                    <a 
-                      href={selectedProject.link}
-                      className="bg-accent text-black px-8 py-3 rounded-full font-bold flex items-center gap-2 hover:scale-105 transition-transform"
-                    >
-                      Live Demo <ExternalLink size={18} />
+                  <div className="flex items-center gap-6 mt-12">
+                    <a href={selectedProject.github} className="flex-1 py-4 rounded-2xl bg-white text-black text-center font-bold text-sm uppercase tracking-widest hover:bg-accent transition-colors">
+                      Source Code
                     </a>
-                    <a 
-                      href={selectedProject.github}
-                      className="px-8 py-3 rounded-full font-bold border border-white/10 hover:bg-white/5 transition-colors flex items-center gap-2"
-                    >
-                      Source Code <Github size={18} />
+                    <a href={selectedProject.link} className="w-14 h-14 rounded-2xl border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors">
+                      <ExternalLink size={20} />
                     </a>
                   </div>
                 </div>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </section>

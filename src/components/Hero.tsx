@@ -1,54 +1,91 @@
 import { motion } from "motion/react";
-import { ArrowRight, Code2, Cpu, Globe } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6 overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[120px] -z-10" />
-      
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-center max-w-5xl"
-      >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-mono mb-6">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-          </span>
-          Available for new projects
-        </div>
+    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-accent/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent/5 rounded-full blur-[120px] animate-pulse delay-1000" />
+      </div>
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-8 text-gradient leading-tight">
-          Transforming Ideas <br />
-          into <span className="font-serif italic font-light">Perfect</span> Code.
-        </h1>
+      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <div className="flex items-center gap-4 mb-8">
+                <span className="w-12 h-px bg-accent/30" />
+                <span className="text-[10px] font-mono text-accent uppercase tracking-[0.4em] font-bold">Full Stack Developer</span>
+              </div>
+              
+              <h1 className="text-6xl md:text-[10rem] font-bold tracking-tightest leading-[0.85] mb-12">
+                Crafting <br />
+                <span className="font-serif italic font-light text-white/60">Digital</span> <br />
+                Excellence.
+              </h1>
 
-        <div className="max-w-2xl mx-auto mb-12 p-4 rounded-xl glass font-mono text-left text-sm md:text-base border-accent/20">
-          <div className="flex gap-2 mb-4">
-            <div className="w-3 h-3 rounded-full bg-red-500/50" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-            <div className="w-3 h-3 rounded-full bg-green-500/50" />
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
+                <p className="text-white/40 text-lg md:text-xl font-light max-w-md leading-relaxed">
+                  Specializing in building high-performance web applications with a focus on clean architecture and exceptional user experience.
+                </p>
+                <div className="flex gap-4">
+                  <a href="#projects" className="px-8 py-4 rounded-full bg-white text-black font-bold text-sm uppercase tracking-widest hover:bg-accent transition-colors">
+                    View Work
+                  </a>
+                  <a href="#contact" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors">
+                    <ArrowRight className="-rotate-45" size={20} />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
           </div>
-          <p className="text-accent/80">const developer = {"{"}</p>
-          <p className="pl-4 text-white/70">name: 'Your Name',</p>
-          <p className="pl-4 text-white/70">role: 'Full-Stack Engineer',</p>
-          <p className="pl-4 text-white/70">skills: ['React', 'Node.js', 'Go', 'Cloud'],</p>
-          <p className="pl-4 text-white/70">passion: 'Building scalable systems'</p>
-          <p className="text-accent/80">{"}"};</p>
+
+          <div className="lg:col-span-4 hidden lg:block">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="relative aspect-[3/4] rounded-[4rem] overflow-hidden glass p-4"
+            >
+              <div className="w-full h-full rounded-[3rem] overflow-hidden relative">
+                <img 
+                  src="https://picsum.photos/seed/theo/800/1200" 
+                  alt="Theo" 
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" />
+                <div className="absolute bottom-10 left-10">
+                  <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest block mb-2">Based in</span>
+                  <span className="text-xl font-bold">Dhaka, BD</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <button className="group bg-accent text-black px-8 py-4 rounded-full font-bold flex items-center gap-2 hover:scale-105 transition-transform">
-            View Projects
-            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-          </button>
-          <button className="px-8 py-4 rounded-full font-bold border border-white/10 hover:bg-white/5 transition-colors">
-            About Me
-          </button>
-        </div>
-      </motion.div>
+        {/* Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="absolute bottom-12 left-6 flex items-center gap-4"
+        >
+          <div className="w-px h-12 bg-white/10 relative overflow-hidden">
+            <motion.div 
+              animate={{ y: [0, 48] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="absolute top-0 left-0 w-full h-4 bg-accent"
+            />
+          </div>
+          <span className="text-[10px] font-mono text-white/20 uppercase tracking-widest">Scroll to explore</span>
+        </motion.div>
+      </div>
     </section>
   );
 }

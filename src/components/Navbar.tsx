@@ -1,108 +1,90 @@
 import { motion, AnimatePresence } from "motion/react";
-import { Terminal, Github, Linkedin, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const navItems = [
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
     { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
     { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" },
     { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <>
-      <motion.nav 
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 glass m-4 rounded-2xl"
-      >
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-            <Terminal className="text-black w-5 h-5" />
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? "py-4 bg-bg/80 backdrop-blur-xl border-b border-white/5" : "py-8"}`}>
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <motion.a 
+          href="#"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-2xl font-bold tracking-tight"
+        >
+          Dark <span className="font-serif italic font-light text-white/60">theo</span>
+        </motion.a>
+
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-12">
+          <div className="flex items-center gap-10">
+            {navLinks.map((link) => (
+              <a 
+                key={link.name} 
+                href={link.href}
+                className="text-[10px] font-mono text-white/40 uppercase tracking-[0.2em] hover:text-white transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
           </div>
-          <span className="font-mono font-bold text-lg tracking-tighter">DARKTHEO</span>
+          <a 
+            href="#contact"
+            className="px-6 py-2 rounded-full border border-white/10 text-[10px] font-mono uppercase tracking-widest hover:bg-white hover:text-black transition-all"
+          >
+            Let's Talk
+          </a>
         </div>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <a 
-              key={item.name} 
-              href={item.href}
-              className="text-sm font-medium text-white/60 hover:text-accent transition-colors"
+        {/* Mobile Toggle */}
+        <button 
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 z-50"
+        >
+          <div className={`w-6 h-px bg-white transition-transform ${isOpen ? "rotate-45 translate-y-2" : ""}`} />
+          <div className={`w-6 h-px bg-white transition-opacity ${isOpen ? "opacity-0" : ""}`} />
+          <div className={`w-6 h-px bg-white transition-transform ${isOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+        </button>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="fixed inset-0 bg-bg/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 z-40"
             >
-              {item.name}
-            </a>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-4">
-          <div className="hidden sm:flex items-center gap-4 mr-2">
-            <a href="https://github.com" target="_blank" className="text-white/60 hover:text-white transition-colors">
-              <Github size={20} />
-            </a>
-            <a href="https://linkedin.com" target="_blank" className="text-white/60 hover:text-white transition-colors">
-              <Linkedin size={20} />
-            </a>
-          </div>
-          
-          <button className="hidden sm:block bg-white text-black px-4 py-2 rounded-full text-sm font-bold hover:bg-accent hover:text-black transition-all">
-            Hire Me
-          </button>
-
-          {/* Mobile Menu Toggle */}
-          <button 
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-white/60 hover:text-white transition-colors"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </motion.nav>
-
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 md:hidden pt-28 px-6 bg-black/95 backdrop-blur-xl"
-          >
-            <div className="flex flex-col gap-6">
-              {navItems.map((item) => (
+              {navLinks.map((link) => (
                 <a 
-                  key={item.name} 
-                  href={item.href}
+                  key={link.name} 
+                  href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-2xl font-bold tracking-tighter text-white/80 hover:text-accent transition-colors"
+                  className="text-4xl font-bold tracking-tight hover:font-serif hover:italic transition-all"
                 >
-                  {item.name}
+                  {link.name}
                 </a>
               ))}
-              
-              <div className="h-px bg-white/10 my-4" />
-              
-              <div className="flex items-center gap-6">
-                <a href="https://github.com" target="_blank" className="text-white/60 hover:text-white transition-colors flex items-center gap-2">
-                  <Github size={24} /> GitHub
-                </a>
-                <a href="https://linkedin.com" target="_blank" className="text-white/60 hover:text-white transition-colors flex items-center gap-2">
-                  <Linkedin size={24} /> LinkedIn
-                </a>
-              </div>
-              
-              <button className="w-full bg-accent text-black py-4 rounded-2xl font-bold text-lg mt-4">
-                Hire Me
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </nav>
   );
 }
