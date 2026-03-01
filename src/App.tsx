@@ -3,6 +3,7 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
+import TechCloud from "./components/TechCloud";
 import Experience from "./components/Experience";
 import Timeline from "./components/Timeline";
 import Terminal from "./components/Terminal";
@@ -41,6 +42,8 @@ export default function App() {
         <Projects />
 
         <Skills />
+        
+        <TechCloud />
         
         <Experience />
 
