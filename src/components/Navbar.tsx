@@ -1,5 +1,4 @@
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function Navbar() {
@@ -12,11 +11,23 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   const navLinks = [
     { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
     { name: "Skills", href: "#skills" },
-    { name: "Contact", href: "#contact" },
+    { name: "Experience", href: "#experience" },
+    { name: "Timeline", href: "#timeline" },
   ];
 
   return (
@@ -26,14 +37,15 @@ export default function Navbar() {
           href="#"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-2xl font-bold tracking-tight"
+          className="text-2xl font-bold tracking-tight relative z-50"
+          onClick={() => setIsOpen(false)}
         >
           Dark <span className="font-serif italic font-light text-white/60">theo</span>
         </motion.a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-12">
-          <div className="flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-8">
+          <div className="flex items-center gap-8">
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
@@ -55,11 +67,12 @@ export default function Navbar() {
         {/* Mobile Toggle */}
         <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 z-50"
+          className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 relative z-50"
+          aria-label="Toggle Menu"
         >
-          <div className={`w-6 h-px bg-white transition-transform ${isOpen ? "rotate-45 translate-y-2" : ""}`} />
-          <div className={`w-6 h-px bg-white transition-opacity ${isOpen ? "opacity-0" : ""}`} />
-          <div className={`w-6 h-px bg-white transition-transform ${isOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+          <div className={`w-6 h-px bg-white transition-all duration-300 origin-center ${isOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
+          <div className={`w-6 h-px bg-white transition-all duration-300 ${isOpen ? "opacity-0" : ""}`} />
+          <div className={`w-6 h-px bg-white transition-all duration-300 origin-center ${isOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
         </button>
 
         {/* Mobile Menu */}
@@ -69,18 +82,26 @@ export default function Navbar() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="fixed inset-0 bg-bg/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 z-40"
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 h-screen bg-bg/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 z-40"
             >
               {navLinks.map((link) => (
                 <a 
                   key={link.name} 
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-4xl font-bold tracking-tight hover:font-serif hover:italic transition-all"
+                  className="text-3xl font-bold tracking-tight hover:font-serif hover:italic transition-all"
                 >
                   {link.name}
                 </a>
               ))}
+              <a 
+                href="#contact"
+                onClick={() => setIsOpen(false)}
+                className="mt-4 px-8 py-3 rounded-full border border-white/10 text-xs font-mono uppercase tracking-widest hover:bg-white hover:text-black transition-all"
+              >
+                Let's Talk
+              </a>
             </motion.div>
           )}
         </AnimatePresence>
