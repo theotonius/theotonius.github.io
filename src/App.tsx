@@ -6,6 +6,7 @@ import Skills from "./components/Skills";
 import TechCloud from "./components/TechCloud";
 import Experience from "./components/Experience";
 import Timeline from "./components/Timeline";
+import Testimonials from "./components/Testimonials";
 import Terminal from "./components/Terminal";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -21,7 +22,7 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen bg-bg selection:bg-accent selection:text-black">
+    <div className="min-h-screen flex flex-col bg-bg selection:bg-accent selection:text-black">
       {/* Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-0.5 bg-accent z-[100] origin-left"
@@ -31,7 +32,7 @@ export default function App() {
       <Navbar />
       <WhatsAppButton />
       
-      <main>
+      <main className="flex-grow">
         <Hero />
         
         <div className="relative">
@@ -48,6 +49,8 @@ export default function App() {
         <Experience />
 
         <Timeline />
+
+        <Testimonials />
 
         <div className="py-32 px-6">
           <div className="max-w-3xl mx-auto">

@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "motion/react";
-import { ExternalLink, Github, X, Info, ArrowRight } from "lucide-react";
+import { ExternalLink, Github, X, Info, ArrowRight, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 const projects = [
@@ -7,6 +7,8 @@ const projects = [
     title: "Lumina Dashboard",
     desc: "A high-performance analytics dashboard built with React and real-time data integration.",
     tech: ["React Js", "Tailwind CSS", "Recharts", "Firebase"],
+    role: "Frontend Developer",
+    type: "Web App",
     image: "https://picsum.photos/seed/react/800/600",
     link: "#",
     github: "#",
@@ -17,6 +19,8 @@ const projects = [
     title: "StreamSync API",
     desc: "A scalable Node.js backend for real-time video streaming and user synchronization.",
     tech: ["Node Js", "Express", "Socket.io", "Redis"],
+    role: "Backend Developer",
+    type: "API",
     image: "https://picsum.photos/seed/node/800/600",
     link: "#",
     github: "#",
@@ -27,6 +31,8 @@ const projects = [
     title: "EstatePro ERP",
     desc: "A comprehensive real estate management system developed with Laravel.",
     tech: ["Laravel", "MySQL", "Vue.js", "Bootstrap"],
+    role: "Full Stack Developer",
+    type: "Web App",
     image: "https://picsum.photos/seed/laravel/800/600",
     link: "#",
     github: "#",
@@ -37,6 +43,8 @@ const projects = [
     title: "SwiftInventory",
     desc: "An optimized inventory management system built with Codeigniter for high-speed performance.",
     tech: ["Codeigniter", "PHP", "MySQL", "jQuery"],
+    role: "Full Stack Developer",
+    type: "Web App",
     image: "https://picsum.photos/seed/ci/800/600",
     link: "#",
     github: "#",
@@ -47,6 +55,8 @@ const projects = [
     title: "FitTrack Pro",
     desc: "A feature-rich native Android application for fitness tracking and health monitoring.",
     tech: ["Android Apps", "Kotlin", "Jetpack Compose", "SQLite"],
+    role: "Mobile Developer",
+    type: "Mobile App",
     image: "https://picsum.photos/seed/android/800/600",
     link: "#",
     github: "#",
@@ -57,11 +67,41 @@ const projects = [
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [filterType, setFilterType] = useState<string>('All');
+  const [filterRole, setFilterRole] = useState<string>('All');
+  const [filterTech, setFilterTech] = useState<string>('All');
+
+  const allTechs = Array.from(new Set(projects.flatMap(p => p.tech))).sort();
+  const allRoles = Array.from(new Set(projects.map(p => p.role))).sort();
+  const allTypes = Array.from(new Set(projects.map(p => p.type))).sort();
+
+  const filteredProjects = projects.filter(project => {
+    const matchType = filterType === 'All' || project.type === filterType;
+    const matchRole = filterRole === 'All' || project.role === filterRole;
+    const matchTech = filterTech === 'All' || project.tech.includes(filterTech);
+    return matchType && matchRole && matchTech;
+  });
+
+  const FilterSelect = ({ label, value, options, onChange }: { label: string, value: string, options: string[], onChange: (val: string) => void }) => (
+    <div className="relative">
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="appearance-none bg-white/5 border border-white/10 text-white text-sm rounded-full pl-6 pr-12 py-3 outline-none focus:border-accent/50 hover:bg-white/10 transition-colors cursor-pointer"
+      >
+        <option value="All" className="bg-bg text-white">{label}</option>
+        {options.map(opt => (
+          <option key={opt} value={opt} className="bg-bg text-white">{opt}</option>
+        ))}
+      </select>
+      <ChevronDown size={14} className="absolute right-5 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
+    </div>
+  );
 
   return (
     <section id="projects" className="py-32 px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div className="max-w-2xl">
             <span className="text-[10px] font-mono text-accent uppercase tracking-[0.4em] mb-8 block font-bold">Selected Works</span>
             <h2 className="text-5xl md:text-8xl font-bold tracking-tight mb-6 leading-[0.85]">
@@ -78,17 +118,27 @@ export default function Projects() {
           </div>
         </div>
 
+        {/* Filters */}
+        <div className="mb-16 flex flex-wrap gap-4 items-center">
+          <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest mr-2">Filter By:</span>
+          <FilterSelect label="All Types" value={filterType} options={allTypes} onChange={setFilterType} />
+          <FilterSelect label="All Roles" value={filterRole} options={allRoles} onChange={setFilterRole} />
+          <FilterSelect label="All Technologies" value={filterTech} options={allTechs} onChange={setFilterTech} />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group cursor-pointer flex flex-col"
-              onClick={() => setSelectedProject(project)}
-            >
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className="group cursor-pointer flex flex-col"
+                onClick={() => setSelectedProject(project)}
+              >
               <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden glass p-4 mb-8 relative">
                 <div className="w-full h-full rounded-[1.8rem] overflow-hidden relative">
                   <img 
@@ -120,7 +170,23 @@ export default function Projects() {
                 <span className="text-[10px] font-mono text-white/10 group-hover:text-accent/40 transition-colors">0{index + 1}</span>
               </div>
             </motion.div>
-          ))}
+            ))}
+          </AnimatePresence>
+          {filteredProjects.length === 0 && (
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              className="col-span-full py-20 text-center"
+            >
+              <p className="text-white/40 font-mono text-sm">No projects found matching the selected filters.</p>
+              <button 
+                onClick={() => { setFilterType('All'); setFilterRole('All'); setFilterTech('All'); }}
+                className="mt-4 text-accent hover:text-white transition-colors font-mono text-xs uppercase tracking-widest"
+              >
+                Clear Filters
+              </button>
+            </motion.div>
+          )}
         </div>
       </div>
 
